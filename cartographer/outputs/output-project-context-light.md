@@ -40,8 +40,8 @@
 
 ## [SECTION:WORKFLOWS] Critical Workflows (Summary)
 
-1. Workflow name – 2–3 sentence description.  
-2. Workflow name – 2–3 sentence description.  
+1. Workflow name - 2-3 sentence description.  
+2. Workflow name - 2-3 sentence description.  
 
 ---
 

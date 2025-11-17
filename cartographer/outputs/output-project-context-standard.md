@@ -109,8 +109,8 @@
 
 ### 4.3 Core Components
 
-- Component name – location – short responsibility  
-- Component name – location – short responsibility  
+- Component name - location - short responsibility  
+- Component name - location - short responsibility  
 
 ---
 
@@ -129,7 +129,7 @@
 
 ### 5.3 Relationships (High-Level)
 
-- Relationship 1 (e.g. `User 1–* Order`)  
+- Relationship 1 (e.g. `User 1-* Order`)  
 - Relationship 2  
 
 ---
@@ -178,7 +178,7 @@
 
 ### 8.1 Configuration Files
 
-- Config file path – format – purpose  
+- Config file path - format - purpose  
 
 ### 8.2 Environment Variables (Templates Only)
 
@@ -188,13 +188,13 @@
 
 ### 8.3 Feature Flags & Modes
 
-- Flag / mode – location – behavior impact  
+- Flag / mode - location - behavior impact  
 
 ---
 
 ## [SECTION:WORKFLOWS] Critical Workflows
 
-> 2–5 most important flows; each should be evidence-backed.
+> 2-5 most important flows; each should be evidence-backed.
 
 ### 9.1 Workflow: <Name>
 
@@ -250,13 +250,13 @@
 
 ### 11.1 Known Issues
 
-- Issue – impact – evidence location  
+- Issue - impact - evidence location  
 
 ### 11.2 Gaps in Documentation / Context
 
-- Area – reason not documented (e.g. no files found)  
+- Area - reason not documented (e.g. no files found)  
 
 ### 11.3 Future Improvements
 
-- Potential improvement – rationale – related files / modules  
+- Potential improvement - rationale - related files / modules  
 

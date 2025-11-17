@@ -39,9 +39,9 @@ You will **not** receive:
 
 2. **Propose core directories**
    - Identify plausible:
-     - `sourceRootDirs` – directories containing the main application code.
-     - `testRootDirs` – directories containing tests (if any).
-     - `commonIgnorePatterns` – noisy/non-source directories to ignore.
+     - `sourceRootDirs` - directories containing the main application code.
+     - `testRootDirs` - directories containing tests (if any).
+     - `commonIgnorePatterns` - noisy/non-source directories to ignore.
 
 3. **Detect monorepo characteristics (if applicable)**
    - Check for monorepo tooling and layout, such as:
@@ -131,7 +131,7 @@ Guidelines:
 * You **must** return valid YAML.
 * You may omit optional keys if you truly cannot infer them, but keep the `config`, `candidateProfiles`, and `observations` top-level keys.
 * Use `"unknown"` or `null` when you cannot determine a value.
-* Keep `observations` as brief bullet points—no more than 10 entries.
+* Keep `observations` as brief bullet points-no more than 10 entries.
 
 ---
 
@@ -141,7 +141,7 @@ Follow this approximate order:
 
 1. **Top-Level Overview**
 
-   * List files and directories at depth 1–2.
+   * List files and directories at depth 1-2.
    * Look for:
 
      * `package.json`, `pyproject.toml`, `pom.xml`, `go.mod`, `Gemfile`, `Cargo.toml`, `composer.json`, `*.csproj`, Terraform/K8s manifests.

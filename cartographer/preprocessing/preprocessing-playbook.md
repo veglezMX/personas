@@ -25,12 +25,12 @@ The output format is the YAML document described in `prompts/preprocessing.promp
 
 ## 2. High-level phases
 
-### Phase A — Top-level overview
+### Phase A - Top-level overview
 
 Objective: understand the overall shape of the repo.
 
 Recommended actions:
-- List top-level files and directories (depth 1–2).
+- List top-level files and directories (depth 1-2).
 - Capture obvious documentation (`README*`, `docs/`).
 - Note very large or obviously generated directories (to add to `commonIgnorePatterns` later).
 
@@ -46,7 +46,7 @@ Typical commands (conceptual):
 
 ---
 
-### Phase B — Manifest & language detection
+### Phase B - Manifest & language detection
 
 Objective: infer **primaryLanguage**, **packageManager**, and candidate **primaryFramework**.
 
@@ -68,7 +68,7 @@ Then:
 
 ---
 
-### Phase C — Project type & root directories
+### Phase C - Project type & root directories
 
 Objective: guess `projectType`, `sourceRootDirs`, and `testRootDirs`.
 
@@ -92,7 +92,7 @@ The pre-scan agent should:
 
 ---
 
-### Phase D — Secondary languages & infrastructure
+### Phase D - Secondary languages & infrastructure
 
 Objective: identify polyglot setups and infra-only areas.
 
@@ -110,7 +110,7 @@ If infra dominates and there is little “runtime” code, consider `projectType
 
 ---
 
-### Phase E — Config assembly & profiles
+### Phase E - Config assembly & profiles
 
 Objective: consolidate findings into `config` and `candidateProfiles`.
 
@@ -129,7 +129,7 @@ Steps:
       - `js-monorepo-workspaces`
       - `polyglot-monorepo`
    - Include a brief `reasoning` string citing concrete evidence.
-4. Populate `observations` with 3–10 short bullet points that justify the config and profile choices.
+4. Populate `observations` with 3-10 short bullet points that justify the config and profile choices.
    - If the repo is a monorepo, ensure at least one observation summarizes:
      - monorepo tool (Nx/Turbo/lerna/pnpm workspaces/etc.),
      - how apps/services/packages are laid out,

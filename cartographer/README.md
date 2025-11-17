@@ -10,23 +10,23 @@ This expert prompt package follows the standard modular layout:
 
 ### Core Prompts (`prompts/`)
 
-- `prompts/preprocessing.prompt.md` – defines the **Pre-Scan Agent** that runs a lightweight repository reconnaissance and outputs a YAML config block plus candidate profiles and observations.
-- `prompts/main.prompt.md` – defines the **Project Context Cartographer** agent that reads the config, explores the repo, and fills an output `PROJECT_CONTEXT.md` template.
-- `prompts/shared-rules.md` – **single source of truth** for Shared Rules for Project Context Agents (evidence-first, no secrets, config-driven, deterministic formatting).
+- `prompts/preprocessing.prompt.md` - defines the **Pre-Scan Agent** that runs a lightweight repository reconnaissance and outputs a YAML config block plus candidate profiles and observations.
+- `prompts/main.prompt.md` - defines the **Project Context Cartographer** agent that reads the config, explores the repo, and fills an output `PROJECT_CONTEXT.md` template.
+- `prompts/shared-rules.md` - **single source of truth** for Shared Rules for Project Context Agents (evidence-first, no secrets, config-driven, deterministic formatting).
 
 ### Supporting Components
 
-- `profiles/` – reusable configuration profiles, including:
+- `profiles/` - reusable configuration profiles, including:
   - Language-specific profiles (Node.js, Python, Java, Go)
   - Monorepo-aware profiles (`js-monorepo-workspaces`, `polyglot-monorepo`)
   - **Base profiles** (`profile-web-api-base.yaml`) that support profile merging via `baseProfile + overrides` pattern
-- `outputs/` – interchangeable `PROJECT_CONTEXT` templates (`standard`, `light`, `deep`, and `monorepo`).
-- `variables/` – variable documentation and a baseline `default-config.yaml`.
-- `preprocessing/` – pre-scan playbook and command templates.
-- `prompts/instruction-playbooks/` – **NEW:** Detailed execution strategies (e.g., `instruction-default.md`) selectable via `instructionPlaybook` config variable
-- `postprocessing/` – **NEW:** Validation playbook for quality assurance and optional export to JSON/YAML
-- `metadata/` – version metadata, changelog, and compatibility notes.
-- `examples/` – example configs and example `PROJECT_CONTEXT` documents for common stacks.
+- `outputs/` - interchangeable `PROJECT_CONTEXT` templates (`standard`, `light`, `deep`, and `monorepo`).
+- `variables/` - variable documentation and a baseline `default-config.yaml`.
+- `preprocessing/` - pre-scan playbook and command templates.
+- `prompts/instruction-playbooks/` - **NEW:** Detailed execution strategies (e.g., `instruction-default.md`) selectable via `instructionPlaybook` config variable
+- `postprocessing/` - **NEW:** Validation playbook for quality assurance and optional export to JSON/YAML
+- `metadata/` - version metadata, changelog, and compatibility notes.
+- `examples/` - example configs and example `PROJECT_CONTEXT` documents for common stacks.
 
 ## Intended usage (conceptual quickstart)
 
@@ -67,7 +67,7 @@ outputTemplate: "output-project-context-standard.md"  # or "monorepo", "light", 
 
 New `prompts/instruction-playbooks/` directory contains detailed execution strategies:
 
-- `instruction-default.md` – Default phased execution for most codebases
+- `instruction-default.md` - Default phased execution for most codebases
 - Future: `instruction-monorepo.md`, `instruction-polyglot.md`, `instruction-deep-optimized.md`
 
 **Usage:**
@@ -134,6 +134,6 @@ primaryFramework: "Express 4.19"
 - Override only what's different
 
 **Available Base Profiles:**
-- `profile-web-api-base.yaml` – Common patterns for all web APIs
+- `profile-web-api-base.yaml` - Common patterns for all web APIs
 
 ---

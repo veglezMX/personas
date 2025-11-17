@@ -71,7 +71,7 @@ You must **not** change the Output Template’s headings or order.
 Organize your work into the following **phases**.  
 You do not need to label the phases in the output; they are for your internal procedure.
 
-### Phase 1 — Project Identity & Technology Stack
+### Phase 1 - Project Identity & Technology Stack
 
 **Goal:** Capture a precise snapshot of what this repository is and what it runs on.
 
@@ -98,7 +98,7 @@ Sources to inspect:
 - Infrastructure hints:
   - Dockerfiles, `docker-compose.yml`, Terraform, Kubernetes / Helm manifests.
 
-### Phase 2 — Directory Structure & Key Statistics
+### Phase 2 - Directory Structure & Key Statistics
 
 **Goal:** Provide a structural map of the codebase and its size.
 
@@ -116,7 +116,7 @@ Tasks:
 
 You may use any tools available to list files and estimate LOC, but do **not** include tool outputs directly in the final document (only the summarized stats).
 
-### Phase 3 — Dependencies & System Requirements
+### Phase 3 - Dependencies & System Requirements
 
 **Goal:** Document runtime, build, and library dependencies.
 
@@ -132,7 +132,7 @@ Tasks:
 
 If dependency lists are very long, you may summarize smaller libraries while fully listing the most important ones (as allowed by the Output Template).
 
-### Phase 4 — Architecture & Components
+### Phase 4 - Architecture & Components
 
 **Goal:** Describe how the system is structurally organized.
 
@@ -152,7 +152,7 @@ Tasks:
 
 Label any architecture classification as `Inference:` if it’s inferred from directory and naming patterns.
 
-### Phase 5 — Data Model & Storage
+### Phase 5 - Data Model & Storage
 
 **Goal:** Document the system’s data model, including entities and relationships.
 
@@ -170,7 +170,7 @@ Tasks:
 
 Document as much as is clearly visible; avoid guessing fields that are not defined.
 
-### Phase 6 — Public Interfaces & API Surface
+### Phase 6 - Public Interfaces & API Surface
 
 **Goal:** Describe how external callers interact with the system.
 
@@ -194,7 +194,7 @@ Adapt to `projectType`:
 
 When interfaces are defined via OpenAPI, GraphQL schemas, or proto files, cross-reference their locations.
 
-### Phase 7 — External Integrations
+### Phase 7 - External Integrations
 
 **Goal:** Capture dependencies on external systems and services.
 
@@ -205,12 +205,12 @@ Tasks:
 - For each integration:
   - Type of service (REST, SDK, message bus, etc.).
   - Where it is configured (files / directories).
-  - Authentication method (API keys, OAuth, etc.) — **describe, do not expose secrets**.
+  - Authentication method (API keys, OAuth, etc.) - **describe, do not expose secrets**.
   - Basic failure handling strategies (retries, backoffs, dead-letter queues).
 
 If there are multiple integrations of the same type (e.g. several webhooks), group them logically.
 
-### Phase 8 — Configuration & Environment
+### Phase 8 - Configuration & Environment
 
 **Goal:** Show how the system is configured without exposing secrets.
 
@@ -228,13 +228,13 @@ Tasks:
 
 If the Output Template includes a table for env vars, fill it with names, required/optional, default, and purpose.
 
-### Phase 9 — Critical Workflows
+### Phase 9 - Critical Workflows
 
 **Goal:** Describe end-to-end flows for the most important use cases.
 
 Tasks:
 
-- Identify 2–5 critical workflows, such as:
+- Identify 2-5 critical workflows, such as:
   - User registration and authentication.
   - Core domain operations (e.g. “Create Order”, “Run Job”, “Process Payment”).
   - Big batch jobs or pipelines.
@@ -247,7 +247,7 @@ Tasks:
 
 Use structured, stepwise descriptions (numbered lists, simple flow diagrams) that align with the Output Template.
 
-### Phase 10 — Deployment, Operations & Testing
+### Phase 10 - Deployment, Operations & Testing
 
 **Goal:** Show how the system is built, deployed, and validated.
 
@@ -266,7 +266,7 @@ Tasks:
 
 If observability tooling is present (logging, metrics, tracing), note it in this phase or a dedicated Observability section, depending on the Output Template.
 
-### Phase 11 — Known Issues, TODOs & Gaps
+### Phase 11 - Known Issues, TODOs & Gaps
 
 **Goal:** Surface risks, incomplete areas, and technical debt.
 
