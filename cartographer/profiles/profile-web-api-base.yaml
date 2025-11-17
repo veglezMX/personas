@@ -1,0 +1,130 @@
+# Base Profile: Web API
+# This is a base profile that can be extended by specific language/framework profiles
+# using the baseProfile + overrides pattern
+
+profileName: web-api-base
+projectType: web_api
+
+# Language/framework intentionally left as "unknown" - to be overridden by child profiles
+primaryLanguage: unknown
+primaryFramework: unknown
+packageManager: unknown
+
+# Common source/test directories for web APIs
+sourceRootDirs:
+  - src
+  - app
+testRootDirs:
+  - tests
+  - src/__tests__
+  - app/tests
+
+# Standard ignore patterns for most web APIs
+commonIgnorePatterns:
+  - node_modules
+  - dist
+  - build
+  - .git
+  - .venv
+  - venv
+  - coverage
+  - target
+  - vendor
+  - __pycache__
+
+# Standard analysis depth for web APIs
+analysisDepth: standard
+
+# Output configuration
+outputTemplate: "output-project-context-standard.md"
+instructionPlaybook: "instruction-default.md"
+
+# Polyglot / constraints
+secondaryLanguages: []
+specialConstraints: ""
+
+# API-specific patterns (common across languages)
+apiDirPatterns:
+  - routes
+  - controllers
+  - handlers
+  - api
+  - endpoints
+
+# Data model patterns (common across languages)
+modelDirPatterns:
+  - models
+  - entities
+  - schemas
+  - domain
+
+# Database migration patterns (common across languages)
+migrationDirPatterns:
+  - migrations
+  - migrate
+  - db/migrate
+
+# Infrastructure patterns (common across cloud deployments)
+infraDirPatterns:
+  - infra
+  - infrastructure
+  - terraform
+  - k8s
+  - kubernetes
+  - helm
+  - charts
+  - manifests
+
+# Test configuration patterns (will be extended by language-specific profiles)
+testConfigPatterns:
+  - pytest.ini
+  - tox.ini
+  - pyproject.toml
+  - jest.config.js
+  - jest.config.ts
+  - vitest.config.ts
+  - pom.xml
+
+# API specification patterns
+apiSpecPatterns:
+  - openapi.yaml
+  - openapi.json
+  - swagger.yaml
+  - swagger.json
+  - api.yaml
+  - "*.graphql"
+
+# Configuration patterns (common across web apps)
+envTemplatePatterns:
+  - .env.example
+  - .env.template
+  - .env.sample
+
+configFilePatterns:
+  - "config.*"
+  - "*settings.*"
+  - "*.config.js"
+  - "*.config.ts"
+
+# Monitoring/APM patterns (common SaaS integrations)
+apmConfigPatterns:
+  - newrelic.js
+  - newrelic.yaml
+  - sentry.config.js
+  - datadog.yaml
+  - datadog.json
+
+# Logging framework patterns (will be extended by language profiles)
+loggingPatterns:
+  - winston
+  - bunyan
+  - pino
+  - loguru
+  - log4j
+  - slog
+  - zerolog
+
+# Tool availability flags
+hasTree: "yes"
+hasJq: "yes"
+hasYq: "yes"

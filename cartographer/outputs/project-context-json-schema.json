@@ -1,0 +1,315 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Project Context Document Schema",
+  "description": "Logical JSON representation of a PROJECT_CONTEXT document produced by the Project Context Cartographer.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "identity": {
+      "type": "object",
+      "description": "Project identity and technology stack.",
+      "required": [
+        "name",
+        "description",
+        "projectType",
+        "primaryLanguage"
+      ],
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "repositoryUrl": { "type": "string" },
+        "projectType": { "type": "string" },
+        "primaryLanguage": { "type": "string" },
+        "primaryFramework": { "type": "string" },
+        "packageManager": { "type": "string" },
+        "entryPoints": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "environments": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "structure": {
+      "type": "object",
+      "description": "Directory layout and repository statistics.",
+      "properties": {
+        "sourceRoots": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "testRoots": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "keyPaths": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "stats": {
+          "type": "object",
+          "properties": {
+            "totalFiles": { "type": "integer" },
+            "sourceFilesPrimary": { "type": "integer" },
+            "testFiles": { "type": "integer" },
+            "configFiles": { "type": "integer" },
+            "locByLanguage": {
+              "type": "object",
+              "additionalProperties": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "dependencies": {
+      "type": "object",
+      "description": "Runtime, build, and library dependencies.",
+      "properties": {
+        "runtimeRequirements": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "production": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "version": { "type": "string" },
+              "role": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "development": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "version": { "type": "string" },
+              "role": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "architecture": {
+      "type": "object",
+      "description": "Architecture style, modules, and components.",
+      "properties": {
+        "style": { "type": "string" },
+        "modules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "purpose": { "type": "string" },
+              "paths": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          }
+        },
+        "components": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "location": { "type": "string" },
+              "responsibility": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "dataModel": {
+      "type": "object",
+      "description": "Data model entities and storage.",
+      "properties": {
+        "stores": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "technology": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "entities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "storage": { "type": "string" },
+              "location": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "apis": {
+      "type": "object",
+      "description": "Public interfaces (HTTP, CLI, library).",
+      "properties": {
+        "http": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "method": { "type": "string" },
+              "path": { "type": "string" },
+              "handler": { "type": "string" },
+              "auth": { "type": "string" },
+              "description": { "type": "string" }
+            }
+          }
+        },
+        "cli": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "command": { "type": "string" },
+              "arguments": { "type": "string" },
+              "description": { "type": "string" },
+              "entryPoint": { "type": "string" }
+            }
+          }
+        },
+        "library": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "module": { "type": "string" },
+              "api": { "type": "string" },
+              "purpose": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "integrations": {
+      "type": "object",
+      "description": "External and internal integrations.",
+      "properties": {
+        "thirdParty": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "type": { "type": "string" },
+              "purpose": { "type": "string" },
+              "configuredAt": { "type": "string" }
+            }
+          }
+        },
+        "internal": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "protocol": { "type": "string" },
+              "direction": { "type": "string" },
+              "notes": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "description": "Configuration files and environment variables.",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": { "type": "string" },
+              "format": { "type": "string" },
+              "purpose": { "type": "string" }
+            }
+          }
+        },
+        "envVars": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "required": { "type": "boolean" },
+              "default": { "type": "string" },
+              "purpose": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "workflows": {
+      "type": "array",
+      "description": "Critical workflows.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "goal": { "type": "string" },
+          "entryPoint": { "type": "string" },
+          "steps": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "data": { "type": "string" },
+          "externalCalls": { "type": "string" },
+          "errorHandling": { "type": "string" }
+        }
+      }
+    },
+    "operations": {
+      "type": "object",
+      "description": "Build, deployment, operations and testing.",
+      "properties": {
+        "devRun": { "type": "string" },
+        "prodRun": { "type": "string" },
+        "ci": { "type": "string" },
+        "testingStrategy": { "type": "string" }
+      }
+    },
+    "risks": {
+      "type": "object",
+      "description": "Known issues, gaps and improvements.",
+      "properties": {
+        "knownIssues": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "gaps": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "improvements": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}
+

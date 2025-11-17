@@ -1,0 +1,47 @@
+profileName: python-fastapi-microservice
+projectType: microservice
+primaryLanguage: "Python 3.11"
+primaryFramework: "FastAPI"
+packageManager: Poetry
+
+sourceRootDirs:
+  - app
+  - src
+testRootDirs:
+  - tests
+  - app/tests
+commonIgnorePatterns:
+  - .venv
+  - venv
+  - .mypy_cache
+  - .pytest_cache
+  - __pycache__
+  - .git
+  - dist
+  - build
+  - coverage
+
+analysisDepth: standard
+outputTemplate: "output-project-context-standard.md"
+instructionPlaybook: "instruction-default.md"
+secondaryLanguages: []
+specialConstraints: ""
+
+apiDirPatterns:
+  - api
+  - routers
+  - routes
+  - handlers
+modelDirPatterns:
+  - models
+  - schemas
+  - entities
+migrationDirPatterns:
+  - migrations
+infraDirPatterns:
+  - infra
+  - terraform
+  - k8s
+  - helm
+  - manifests
+

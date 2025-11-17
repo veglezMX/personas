@@ -1,0 +1,137 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Project Context Cartographer Profile Schema",
+  "description": "Schema for reusable configuration profiles used by the Project Context Cartographer prompts.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profileName",
+    "projectType",
+    "primaryLanguage",
+    "packageManager",
+    "sourceRootDirs",
+    "testRootDirs",
+    "commonIgnorePatterns",
+    "analysisDepth"
+  ],
+  "properties": {
+    "profileName": {
+      "type": "string",
+      "description": "Unique ID for this profile (e.g. node-web-api, python-fastapi-microservice)."
+    },
+    "projectType": {
+      "type": "string",
+      "description": "High-level project type.",
+      "enum": [
+        "web_api",
+        "cli_tool",
+        "library",
+        "microservice",
+        "monolith",
+        "worker",
+        "data_pipeline",
+        "infra_only",
+        "other",
+        "unknown"
+      ]
+    },
+    "primaryLanguage": {
+      "type": "string",
+      "description": "Primary implementation language and (optionally) runtime version, e.g. \"Node.js 20\" or \"Python 3.11\"."
+    },
+    "primaryFramework": {
+      "type": "string",
+      "description": "Primary application framework, e.g. \"Express 4.19\", \"FastAPI\", \"Spring Boot 3\", or \"none\".",
+      "default": "unknown"
+    },
+    "packageManager": {
+      "type": "string",
+      "description": "Primary package manager or build tool.",
+      "enum": [
+        "npm",
+        "pnpm",
+        "yarn",
+        "pip",
+        "Poetry",
+        "Maven",
+        "Gradle",
+        "Cargo",
+        "go mod",
+        "unknown"
+      ]
+    },
+    "sourceRootDirs": {
+      "type": "array",
+      "description": "Ordered list of directories that contain main application code.",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "testRootDirs": {
+      "type": "array",
+      "description": "Ordered list of directories that contain tests.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "commonIgnorePatterns": {
+      "type": "array",
+      "description": "Directories or glob patterns that should be ignored in all scans.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "analysisDepth": {
+      "type": "string",
+      "description": "Default analysis depth for this profile.",
+      "enum": [
+        "light",
+        "standard",
+        "deep"
+      ]
+    },
+    "secondaryLanguages": {
+      "type": "array",
+      "description": "Optional polyglot subsystems, in the format \"Language (purpose in path/)\".",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "specialConstraints": {
+      "type": "string",
+      "description": "Free-text constraints or notes, e.g. \"redact internal hostnames\".",
+      "default": ""
+    },
+    "apiDirPatterns": {
+      "type": "array",
+      "description": "Directory name patterns that typically contain API routing or controllers.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modelDirPatterns": {
+      "type": "array",
+      "description": "Directory name patterns that typically contain models or entities.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "migrationDirPatterns": {
+      "type": "array",
+      "description": "Directory name patterns that typically contain database migrations.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "infraDirPatterns": {
+      "type": "array",
+      "description": "Directory name patterns for infrastructure-as-code or deployment manifests.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}
+

@@ -1,0 +1,44 @@
+profileName: java-spring-monolith
+projectType: monolith
+primaryLanguage: "Java 21"
+primaryFramework: "Spring Boot 3"
+packageManager: Maven
+
+sourceRootDirs:
+  - src/main/java
+  - src/main/resources
+testRootDirs:
+  - src/test/java
+commonIgnorePatterns:
+  - target
+  - .mvn
+  - .idea
+  - .git
+  - build
+  - out
+
+analysisDepth: standard
+outputTemplate: "output-project-context-standard.md"
+instructionPlaybook: "instruction-default.md"
+secondaryLanguages: []
+specialConstraints: ""
+
+apiDirPatterns:
+  - controller
+  - controllers
+  - api
+  - web
+modelDirPatterns:
+  - model
+  - models
+  - entity
+  - entities
+migrationDirPatterns:
+  - db/migration
+  - migrations
+infraDirPatterns:
+  - infra
+  - k8s
+  - kubernetes
+  - helm
+

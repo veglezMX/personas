@@ -1,0 +1,57 @@
+profileName: polyglot-monorepo
+projectType: monolith
+primaryLanguage: "mixed (Node.js + Python + Go)"
+primaryFramework: "mixed"
+packageManager: unknown
+
+sourceRootDirs:
+  - apps
+  - services
+  - packages
+  - backend
+  - frontend
+testRootDirs:
+  - tests
+  - apps
+  - services
+commonIgnorePatterns:
+  - node_modules
+  - dist
+  - build
+  - .git
+  - .venv
+  - venv
+  - __pycache__
+  - coverage
+  - .nx
+  - .turbo
+
+analysisDepth: deep
+outputTemplate: "output-project-context-monorepo.md"
+instructionPlaybook: "instruction-default.md"
+secondaryLanguages:
+  - "Python (backend services in services/)"
+  - "Go (analytics workers in services/)"
+specialConstraints: "monorepo with polyglot services and shared packages; document per-service stacks and cross-service dependencies using monorepo output template."
+
+apiDirPatterns:
+  - api
+  - routes
+  - controllers
+  - handlers
+modelDirPatterns:
+  - models
+  - schemas
+  - entities
+migrationDirPatterns:
+  - migrations
+  - db/migrate
+infraDirPatterns:
+  - infra
+  - terraform
+  - k8s
+  - kubernetes
+  - helm
+  - charts
+  - manifests
+

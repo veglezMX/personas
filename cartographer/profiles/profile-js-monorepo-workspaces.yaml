@@ -1,0 +1,53 @@
+profileName: js-monorepo-workspaces
+projectType: monolith
+primaryLanguage: "Node.js 20"
+primaryFramework: "mixed (Next.js/React/Node services)"
+packageManager: pnpm
+
+sourceRootDirs:
+  - apps
+  - services
+  - packages
+  - libs
+testRootDirs:
+  - apps
+  - services
+  - packages
+commonIgnorePatterns:
+  - node_modules
+  - dist
+  - build
+  - .git
+  - .turbo
+  - .nx
+  - coverage
+
+analysisDepth: deep
+outputTemplate: "output-project-context-monorepo.md"
+instructionPlaybook: "instruction-default.md"
+secondaryLanguages:
+  - "TypeScript (frontend apps in apps/)"
+specialConstraints: "monorepo with multiple apps/services; treat each app/service and shared package as distinct units; prefer monorepo output template."
+
+apiDirPatterns:
+  - api
+  - routes
+  - controllers
+  - handlers
+modelDirPatterns:
+  - models
+  - entities
+  - schemas
+migrationDirPatterns:
+  - migrations
+  - db/migrate
+infraDirPatterns:
+  - infra
+  - infrastructure
+  - terraform
+  - k8s
+  - kubernetes
+  - helm
+  - charts
+  - manifests
+

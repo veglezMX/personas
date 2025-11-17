@@ -1,0 +1,122 @@
+{
+  "expertName": "Project Planner",
+  "expertType": "task-specific",
+  "version": "2.0.0",
+  "lastUpdated": "2025-11-17",
+  "description": "Multi-domain planner expert that generates phased implementation checklists and executor playbooks for software projects, documentation overhauls, refactors, and more.",
+
+  "capabilities": {
+    "plannerTypes": [
+      "software_refactor",
+      "feature_launch",
+      "docs_overhaul",
+      "data_migration",
+      "process_change",
+      "incident_remediation",
+      "experiment",
+      "generic_planner"
+    ],
+    "domains": [
+      "software",
+      "docs",
+      "ops",
+      "process",
+      "experiments"
+    ],
+    "outputs": [
+      "FINALIZED_PROJECT_BRIEF.md",
+      "PROJECT_CHECKLIST.md",
+      "PROJECT_EXECUTION_PLAYBOOK.md",
+      "profile.yaml"
+    ]
+  },
+
+  "phases": {
+    "preprocessing": {
+      "file": "prompts/preprocessing.prompt.md",
+      "purpose": "Ambiguity resolution, plannerType/domain detection, profile generation",
+      "inputs": ["Initial project description/README"],
+      "outputs": ["FINALIZED_PROJECT_BRIEF.md", "profile.yaml"]
+    },
+    "main": {
+      "file": "prompts/main.prompt.md",
+      "purpose": "Generate phased checklist and executor playbook",
+      "inputs": ["FINALIZED_PROJECT_BRIEF.md", "profile.yaml"],
+      "outputs": ["PROJECT_CHECKLIST.md", "PROJECT_EXECUTION_PLAYBOOK.md"]
+    }
+  },
+
+  "compatability": {
+    "supportedModels": [
+      "claude-opus-3.5",
+      "claude-sonnet-3.5",
+      "claude-sonnet-4.5",
+      "gpt-4",
+      "gpt-4-turbo",
+      "gpt-4o",
+      "gemini-1.5-pro",
+      "gemini-2.0-flash"
+    ],
+    "minimumContextLength": 100000,
+    "recommendedContextLength": 200000,
+    "tokenOptimizationLevel": "standard"
+  },
+
+  "configuration": {
+    "variables": "variables/variables-reference.md",
+    "defaults": "variables/default-config.yaml",
+    "profiles": [
+      "profiles/profile-software-refactor.yaml",
+      "profiles/profile-feature-launch.yaml",
+      "profiles/profile-docs-overhaul.yaml"
+    ],
+    "templates": [
+      "outputs/project-checklist-template.md",
+      "outputs/project-executor-playbook-template.md"
+    ]
+  },
+
+  "features": {
+    "conditionalQuestions": true,
+    "description": "Asks domain-specific questions based on plannerType and domain",
+    "profileMerging": true,
+    "dualOutputs": true,
+    "jiraMapping": true,
+    "featureFlags": true,
+    "description": "Supports gradual rollout via feature flags in plans"
+  },
+
+  "architecture": {
+    "pattern": "modular-task-specific-expert",
+    "promptAssembly": "template-based with variable substitution",
+    "profileStrategy": "base profile + overrides (preferred) or standalone",
+    "outputStrategy": "template-driven dual outputs (checklist + playbook)"
+  },
+
+  "usageNotes": [
+    "Always run preprocessing (Phase 0) before main planner (Phase 1)",
+    "Preprocessing adapts questions based on plannerType and domain",
+    "Tech stack questions only asked when domain=software",
+    "Main planner generates BOTH checklist and playbook (dual outputs)",
+    "Checklist tracks WHAT to do, playbook explains HOW to do it",
+    "Profiles can reference base profiles with overrides or be standalone",
+    "All variables are documented in variables/variables-reference.md"
+  ],
+
+  "changelog": {
+    "file": "metadata/changelog.md",
+    "latestVersion": "2.0.0",
+    "latestChanges": "Added plannerType support, multi-domain capabilities, dual-output generation, and Jira-style executor playbooks"
+  },
+
+  "examples": [
+    "examples/planner-example-feature-launch.md"
+  ],
+
+  "references": {
+    "architecture": "../../task-specific-expert/guides/architecture-overview.md",
+    "promptAnatomy": "../../task-specific-expert/guides/main-prompt-anatomy.md",
+    "assemblyGuide": "../../task-specific-expert/guides/prompt-assembly.md",
+    "essentialContext": "../../task-specific-expert/ESSENTIAL_CONTEXT.md"
+  }
+}

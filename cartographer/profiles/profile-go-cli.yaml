@@ -1,0 +1,31 @@
+profileName: go-cli
+projectType: cli_tool
+primaryLanguage: "Go 1.21"
+primaryFramework: "none"
+packageManager: "go mod"
+
+sourceRootDirs:
+  - cmd
+  - pkg
+testRootDirs:
+  - .
+commonIgnorePatterns:
+  - vendor
+  - bin
+  - .git
+  - dist
+  - build
+
+analysisDepth: light
+outputTemplate: "output-project-context-standard.md"
+instructionPlaybook: "instruction-default.md"
+secondaryLanguages: []
+specialConstraints: ""
+
+apiDirPatterns: []
+modelDirPatterns: []
+migrationDirPatterns: []
+infraDirPatterns:
+  - infra
+  - terraform
+

@@ -1,0 +1,52 @@
+# Profile: Node.js Express API (using baseProfile + overrides pattern)
+# This profile demonstrates profile merging: inherit from web-api-base, override only what's different
+
+# Reference the base profile
+baseProfile: "profile-web-api-base.yaml"
+
+# Override only the values specific to Node.js + Express
+profileName: node-express-api
+primaryLanguage: "Node.js 20"
+primaryFramework: "Express 4.19"
+packageManager: pnpm
+
+# Node.js-specific entry point patterns
+entryPointPatterns:
+  - index.js
+  - server.js
+  - app.js
+  - main.js
+
+# Node.js-specific test file patterns
+testFilePatterns:
+  - "*.test.js"
+  - "*.test.ts"
+  - "*.spec.js"
+  - "*.spec.ts"
+
+# Additional test config patterns specific to Node.js
+testConfigPatterns:
+  - jest.config.js
+  - jest.config.ts
+  - vitest.config.js
+  - vitest.config.ts
+  - mocha.opts
+  - .mocharc.json
+
+# Node.js-specific logging patterns (extend base)
+loggingPatterns:
+  - winston
+  - bunyan
+  - pino
+  - morgan
+  - log4js
+
+# Node.js-specific CLI framework patterns (if hybrid CLI + API)
+cliFrameworkPatterns:
+  - commander
+  - yargs
+  - inquirer
+  - oclif
+
+# Note: All other values (apiDirPatterns, modelDirPatterns, etc.) are inherited
+# from profile-web-api-base.yaml and don't need to be repeated here

@@ -1,0 +1,90 @@
+# Default Configuration for Planner Expert
+# This file defines expert-wide defaults for all configuration variables.
+# Profiles override only what differs from these defaults.
+
+# ==========================================
+# CORE PLANNER CONFIGURATION
+# ==========================================
+
+# Type of planning scenario
+plannerType: generic_planner
+
+# High-level domain category
+domain: software
+
+# Ordered list of phase names (generic phases that work across most projects)
+phases:
+  - analysis
+  - scaffolding
+  - implementation
+  - testing
+  - rollout
+
+# ==========================================
+# TECH STACK CONFIGURATION (Software Domain)
+# ==========================================
+# These are only used when domain=software
+# Defaults are set to generic/unknown values that profiles should override
+
+techStack: "Generic"
+language: "Unknown"
+packageManager: "unknown"
+dependencyFile: "dependencies.txt"
+sourceFolder: "src"
+entrypointFile: "main"
+testFolder: "tests"
+buildCommand: "make build"
+runCommand: "make run"
+testCommand: "make test"
+
+# ==========================================
+# OUTPUT CONFIGURATION
+# ==========================================
+
+# Template for the PROJECT_CHECKLIST.md output
+outputTemplate: "project-checklist-template.md"
+
+# Template for the PROJECT_EXECUTION_PLAYBOOK.md output
+playbookTemplate: "project-executor-playbook-template.md"
+
+# Level of detail for generated tasks
+detailLevel: "standard"
+
+# ==========================================
+# EXECUTION & RISK CONFIGURATION
+# ==========================================
+
+# Risk tolerance (how conservative vs aggressive the plan should be)
+riskTolerance: "medium"
+
+# Whether to include feature flag mechanisms for gradual rollout
+requiresFeatureFlags: false
+
+# Target architecture pattern (for refactors)
+targetArchitecture: "layered"
+
+# ==========================================
+# DOMAIN-SPECIFIC DEFAULTS
+# ==========================================
+
+# Software Refactors
+framework: "unknown"
+db: "unknown"
+
+# Data Migrations
+sourceSystem: "unknown"
+targetSystem: "unknown"
+dataVolume: "unknown"
+migrationType: "one-time"
+
+# Documentation Projects
+docsFramework: "unknown"
+targetAudience: "developers"
+docScope: "comprehensive"
+
+# ==========================================
+# METADATA
+# ==========================================
+
+configVersion: "1.0.0"
+lastUpdated: "2025-11-17"

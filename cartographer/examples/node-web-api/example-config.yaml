@@ -1,0 +1,74 @@
+# Example pre-scan output for a Node.js web API repository.
+#
+# This YAML matches the structure produced by `prompts/preprocessing.prompt.md`
+# and can be used as the config input for the main Cartographer prompt (`prompts/main.prompt.md`).
+
+config:
+  profileName: node-web-api
+  projectType: web_api
+  primaryLanguage: "Node.js 20"
+  primaryFramework: "Express 4.19"
+  packageManager: pnpm
+
+  sourceRootDirs:
+    - src
+  testRootDirs:
+    - tests
+    - src/__tests__
+  commonIgnorePatterns:
+    - node_modules
+    - dist
+    - build
+    - .git
+    - .venv
+    - venv
+    - coverage
+    - target
+    - vendor
+    - __pycache__
+
+  analysisDepth: standard
+  secondaryLanguages:
+    - "TypeScript (frontend in frontend/)"
+  specialConstraints: "ignore legacy/ and archived/ directories"
+
+  # Optional advanced parameters inferred from repo conventions
+  apiDirPatterns:
+    - routes
+    - controllers
+    - handlers
+    - api
+    - endpoints
+  modelDirPatterns:
+    - models
+    - entities
+    - schemas
+  migrationDirPatterns:
+    - migrations
+    - db/migrate
+  infraDirPatterns:
+    - infra
+    - terraform
+    - k8s
+    - helm
+    - manifests
+
+candidateProfiles:
+  - id: node-web-api
+    likelihood: 0.95
+    reasoning: >
+      Found package.json with Express dependency, src/ directory, routes/ folder,
+      and tests/ directory; typical Node.js REST API layout.
+  - id: python-fastapi-microservice
+    likelihood: 0.1
+    reasoning: >
+      Some Python tooling scripts present, but Node.js/Express stack is clearly dominant.
+
+observations:
+  - "Top-level files: README.md, package.json, pnpm-lock.yaml, tsconfig.json."
+  - "Source code under src/ with routes/, controllers/, and models/."
+  - "Test files under tests/ and src/__tests__/ with Jest configuration."
+  - "Frontend React TypeScript app under frontend/ (separate build)."
+  - "Dockerfile and docker-compose.yml present at repository root."
+  - "No obvious Terraform or Kubernetes manifests detected."
+

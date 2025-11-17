@@ -1,0 +1,64 @@
+# Profile: Software Refactor
+# Use this profile when planning a refactor of existing software systems
+
+# ==========================================
+# METADATA
+# ==========================================
+
+profileName: "software-refactor"
+description: "Profile for planning software refactoring projects (modular monoliths, service extraction, architectural improvements)"
+
+# ==========================================
+# CORE PLANNER CONFIGURATION
+# ==========================================
+
+plannerType: software_refactor
+domain: software
+
+# Refactor-specific phases (analysis-heavy, incremental implementation)
+phases:
+  - analysis          # Inventory code, identify boundaries, map dependencies
+  - scaffolding       # Create new module structure, add feature flags
+  - extraction        # Move code incrementally to new structure
+  - integration       # Wire new paths, enable feature flags gradually
+  - cleanup           # Remove dead code, update docs, remove feature flags
+
+# ==========================================
+# TECH STACK CONFIGURATION
+# ==========================================
+# These should be overridden by preprocessing based on actual project
+# Setting Node.js as an example default for software refactors
+
+techStack: "Node.js"
+language: "JavaScript/TypeScript"
+packageManager: "npm"
+dependencyFile: "package.json"
+sourceFolder: "src"
+entrypointFile: "index.js"
+testFolder: "tests"
+buildCommand: "npm run build"
+runCommand: "npm start"
+testCommand: "npm test"
+
+# ==========================================
+# OUTPUT CONFIGURATION
+# ==========================================
+
+outputTemplate: "project-checklist-template.md"
+playbookTemplate: "project-executor-playbook-template.md"
+detailLevel: "high"  # Refactors need detailed, granular tasks
+
+# ==========================================
+# EXECUTION & RISK CONFIGURATION
+# ==========================================
+
+riskTolerance: "medium"           # Refactors are risky, favor incremental changes
+requiresFeatureFlags: true        # Always use feature flags for safe rollout
+targetArchitecture: "layered-modular"  # Common refactor target
+
+# ==========================================
+# REFACTOR-SPECIFIC VARIABLES
+# ==========================================
+
+framework: "unknown"  # Will be determined during preprocessing
+db: "unknown"         # Will be determined during preprocessing

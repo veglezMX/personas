@@ -1,0 +1,65 @@
+# Profile: Feature Launch
+# Use this profile when planning the launch of a new feature or product
+
+# ==========================================
+# METADATA
+# ==========================================
+
+profileName: "feature-launch"
+description: "Profile for planning new feature or product launches (greenfield features, new products, major capabilities)"
+
+# ==========================================
+# CORE PLANNER CONFIGURATION
+# ==========================================
+
+plannerType: feature_launch
+domain: software
+
+# Feature launch phases (setup → build → validate → ship)
+phases:
+  - requirements      # Clarify requirements, design APIs, define success metrics
+  - scaffolding       # Set up project structure, dependencies, CI/CD
+  - implementation    # Build core functionality, integrate with existing systems
+  - testing           # Unit tests, integration tests, E2E tests
+  - documentation     # API docs, user guides, release notes
+  - rollout           # Staged rollout, monitoring, feedback collection
+
+# ==========================================
+# TECH STACK CONFIGURATION
+# ==========================================
+# These should be overridden by preprocessing based on actual project
+# Setting Python as an example default for feature launches
+
+techStack: "Python"
+language: "Python"
+packageManager: "pip"
+dependencyFile: "pyproject.toml"
+sourceFolder: "app"
+entrypointFile: "main.py"
+testFolder: "tests"
+buildCommand: "python -m build"
+runCommand: "python -m app.main"
+testCommand: "pytest"
+
+# ==========================================
+# OUTPUT CONFIGURATION
+# ==========================================
+
+outputTemplate: "project-checklist-template.md"
+playbookTemplate: "project-executor-playbook-template.md"
+detailLevel: "standard"  # Balanced detail for feature launches
+
+# ==========================================
+# EXECUTION & RISK CONFIGURATION
+# ==========================================
+
+riskTolerance: "medium"           # Balanced approach for new features
+requiresFeatureFlags: true        # Use feature flags for gradual rollout
+targetArchitecture: "layered"     # Default layered architecture for new features
+
+# ==========================================
+# FEATURE-SPECIFIC VARIABLES
+# ==========================================
+
+framework: "unknown"  # Will be determined during preprocessing
+db: "unknown"         # Will be determined during preprocessing

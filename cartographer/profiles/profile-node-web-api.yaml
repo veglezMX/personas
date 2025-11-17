@@ -1,0 +1,50 @@
+profileName: node-web-api
+projectType: web_api
+primaryLanguage: "Node.js 20"
+primaryFramework: "Express 4.19"
+packageManager: pnpm
+
+sourceRootDirs:
+  - src
+testRootDirs:
+  - tests
+  - src/__tests__
+commonIgnorePatterns:
+  - node_modules
+  - dist
+  - build
+  - .git
+  - .venv
+  - venv
+  - coverage
+  - target
+  - vendor
+  - __pycache__
+
+analysisDepth: standard
+outputTemplate: "output-project-context-standard.md"
+instructionPlaybook: "instruction-default.md"
+secondaryLanguages: []
+specialConstraints: ""
+
+# Advanced patterns (optional but pre-populated with sensible defaults)
+apiDirPatterns:
+  - routes
+  - controllers
+  - handlers
+  - api
+  - endpoints
+modelDirPatterns:
+  - models
+  - entities
+  - schemas
+migrationDirPatterns:
+  - migrations
+  - db/migrate
+infraDirPatterns:
+  - infra
+  - terraform
+  - k8s
+  - helm
+  - manifests
+

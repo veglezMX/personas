@@ -1,0 +1,164 @@
+# Baseline configuration for the Project Context Cartographer.
+#
+# This file provides sensible defaults for:
+# - core identity fields (initialized to "unknown")
+# - ignore patterns
+# - directory depths and sampling limits
+# - directory and file-pattern hints
+# - tool availability flags
+#
+# Profiles in `profiles/` can extend or override these values.
+
+config:
+  # Core identity (to be refined by Pre-Scan or profiles)
+  projectType: unknown           # see variables-reference.md for allowed values
+  primaryLanguage: unknown       # e.g. "Node.js 20", "Python 3.11"
+  primaryFramework: unknown      # e.g. "Express 4.19", "FastAPI", "Spring Boot 3"
+  packageManager: unknown        # e.g. npm, pnpm, yarn, pip, Maven
+
+  # Default roots and ignore patterns
+  sourceRootDirs:
+    - src
+    - app
+  testRootDirs:
+    - tests
+    - src/__tests__
+  commonIgnorePatterns:
+    - node_modules
+    - dist
+    - build
+    - .git
+    - .venv
+    - venv
+    - coverage
+    - target
+    - vendor
+    - __pycache__
+
+  # Analysis depth
+  analysisDepth: standard        # light | standard | deep
+
+  # Output configuration
+  outputTemplate: "output-project-context-standard.md"  # template to use from outputs/
+  instructionPlaybook: "instruction-default.md"         # optional playbook from prompts/instruction-playbooks/
+
+  # Polyglot / constraints
+  secondaryLanguages: []         # e.g. 'TypeScript (frontend in frontend/)'
+  specialConstraints: ""         # e.g. 'redact internal hostnames'
+
+  # Depth & sampling (from Optional Configuration)
+  shallowTreeDepth: 2
+  deepTreeDepth: 4
+  sampleFileCount: 10
+  sampleLineCount: 50
+
+  # Directory & file patterns
+  apiDirPatterns:
+    - routes
+    - controllers
+    - handlers
+    - api
+    - endpoints
+  modelDirPatterns:
+    - models
+    - entities
+    - schemas
+  migrationDirPatterns:
+    - migrations
+    - migrate
+    - db/migrate
+
+  entryPointPatterns: []         # let language profiles drive defaults when empty
+  testFilePatterns: []           # let language profiles drive defaults when empty
+
+  testConfigPatterns:
+    - pytest.ini
+    - tox.ini
+    - pyproject.toml
+    - jest.config.js
+    - vitest.config.ts
+    - pom.xml
+
+  apiSpecPatterns:
+    - openapi.yaml
+    - swagger.json
+    - api.yaml
+    - "*.graphql"
+
+  # Configuration & documentation patterns
+  envTemplatePatterns:
+    - .env.example
+    - .env.template
+  configFilePatterns:
+    - "config.*"
+    - "*settings.*"
+    - "*.config.js"
+    - "*.config.ts"
+  workflowConfigPatterns:
+    - "*dag*.py"
+    - "*workflow*"
+    - "*pipeline*"
+  coverageConfigPatterns:
+    - .coveragerc
+    - codecov.yml
+    - coverage.xml
+    - .nycrc
+  apmConfigPatterns:
+    - newrelic.js
+    - sentry.config.js
+    - datadog.yaml
+  knownIssuesPatterns:
+    - KNOWN_ISSUES.md
+    - BUGS.md
+    - ISSUES.md
+  changelogPatterns:
+    - CHANGELOG.md
+    - CHANGES.md
+    - HISTORY.md
+
+  # Framework & infrastructure detection
+  cliFrameworkPatterns:
+    - cobra
+    - click
+    - commander
+    - argparse
+    - clap
+    - yargs
+  workerPatterns:
+    - cron
+    - schedule
+    - queue
+    - consumer
+    - worker
+    - celery
+    - sidekiq
+  loggingPatterns:
+    - winston
+    - loguru
+    - log4j
+    - slog
+    - bunyan
+
+  infraConfigPatterns:
+    - "*.tf"
+    - "*.tfvars"
+    - kustomization.yaml
+    - Chart.yaml
+    - values.yaml
+    - "*-deployment.yaml"
+    - "*-service.yaml"
+  infraDirPatterns:
+    - infra
+    - infrastructure
+    - terraform
+    - k8s
+    - kubernetes
+    - helm
+    - charts
+    - manifests
+
+  # Tool availability flags (set to "no" if tools are missing)
+  hasTree: "yes"
+  hasJq: "yes"
+  hasYq: "yes"
+

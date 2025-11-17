@@ -1,0 +1,70 @@
+# Example pre-scan output for a Python FastAPI microservice repository.
+#
+# This YAML matches the structure produced by `prompts/preprocessing.prompt.md`
+# and can be used as the config input for the main Cartographer prompt (`prompts/main.prompt.md`).
+
+config:
+  profileName: python-fastapi-microservice
+  projectType: microservice
+  primaryLanguage: "Python 3.11"
+  primaryFramework: "FastAPI"
+  packageManager: Poetry
+
+  sourceRootDirs:
+    - app
+  testRootDirs:
+    - tests
+    - app/tests
+  commonIgnorePatterns:
+    - .venv
+    - venv
+    - .pytest_cache
+    - .mypy_cache
+    - __pycache__
+    - .git
+    - dist
+    - build
+    - coverage
+
+  analysisDepth: standard
+  secondaryLanguages:
+    - "TypeScript (frontend in web/)"
+  specialConstraints: "redact internal hostnames"
+
+  apiDirPatterns:
+    - api
+    - routers
+    - routes
+    - handlers
+  modelDirPatterns:
+    - models
+    - schemas
+    - entities
+  migrationDirPatterns:
+    - migrations
+  infraDirPatterns:
+    - infra
+    - terraform
+    - k8s
+    - helm
+    - manifests
+
+candidateProfiles:
+  - id: python-fastapi-microservice
+    likelihood: 0.9
+    reasoning: >
+      Found pyproject.toml with FastAPI and Uvicorn dependencies, app/ directory,
+      routers/, models/, and tests/ layout typical for a FastAPI service.
+  - id: node-web-api
+    likelihood: 0.2
+    reasoning: >
+      Some Node-based tooling present under web/, but backend stack is clearly Python/FastAPI.
+
+observations:
+  - "Top-level files: README.md, pyproject.toml, poetry.lock, Dockerfile."
+  - "FastAPI app factory in app/main.py with APIRouter instances."
+  - "Pydantic models under app/schemas/ and SQLAlchemy models under app/models/."
+  - "Alembic migrations configured in app/db/migrations/."
+  - "Tests located in tests/ and app/tests/ using pytest."
+  - "Docker Compose file defines app, db, and redis services."
+

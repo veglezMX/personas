@@ -1,0 +1,66 @@
+# Profile: Documentation Overhaul
+# Use this profile when planning a documentation system overhaul or migration
+
+# ==========================================
+# METADATA
+# ==========================================
+
+profileName: "docs-overhaul"
+description: "Profile for planning documentation system overhauls (migration, restructuring, comprehensive rewrites)"
+
+# ==========================================
+# CORE PLANNER CONFIGURATION
+# ==========================================
+
+plannerType: docs_overhaul
+domain: docs  # NOTE: domain=docs, so tech stack variables are NOT used
+
+# Documentation overhaul phases
+phases:
+  - audit             # Inventory existing docs, identify gaps, assess quality
+  - architecture      # Design new structure, define templates, choose framework
+  - migration         # Migrate existing docs to new structure/framework
+  - authoring         # Write new content for gaps, update stale content
+  - review            # Technical review, copy editing, user testing
+  - deployment        # Deploy new docs site, set up CI/CD, configure search
+
+# ==========================================
+# OUTPUT CONFIGURATION
+# ==========================================
+
+outputTemplate: "project-checklist-template.md"
+playbookTemplate: "project-executor-playbook-template.md"
+detailLevel: "standard"  # Standard detail for docs projects
+
+# ==========================================
+# EXECUTION & RISK CONFIGURATION
+# ==========================================
+
+riskTolerance: "low"              # Documentation changes are lower risk
+requiresFeatureFlags: false       # Feature flags not typically needed for docs
+targetArchitecture: "N/A"         # Not applicable for docs projects
+
+# ==========================================
+# DOCUMENTATION-SPECIFIC VARIABLES
+# ==========================================
+
+docsFramework: "MkDocs"           # Example default, should be overridden
+targetAudience: "developers"      # Default to developer audience
+docScope: "comprehensive"         # Default to comprehensive coverage
+
+# ==========================================
+# TECH STACK (NOT USED - domain=docs)
+# ==========================================
+# These are intentionally left as placeholder values since domain=docs
+# They will not be referenced in docs-related prompts
+
+techStack: "N/A"
+language: "Markdown"
+packageManager: "pip"
+dependencyFile: "requirements.txt"
+sourceFolder: "docs"
+entrypointFile: "index.md"
+testFolder: "tests"
+buildCommand: "mkdocs build"
+runCommand: "mkdocs serve"
+testCommand: "mkdocs build --strict"
