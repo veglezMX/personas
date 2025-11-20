@@ -10,15 +10,17 @@ This is a **utility prompt** that you (the user) run to combine your expert prom
 ## What This Utility Does
 
 1. **Merges YAML configurations** (default-config.yaml + optional profile override)
-2. **Instantiates placeholders** in `main.prompt.md` using merged config values
-3. **Optionally loads instruction playbook** (if specified in config)
-4. **Assembles components in correct order**:
+2. **Generates a configuration block** from merged config values
+3. **Injects configuration block** at the top of `main.prompt.md` (or replaces `{CONFIGURATION_SECTION}` placeholder)
+4. **Retains placeholders** in the prompt body (e.g., `{units}`, `{forecastDays}`) - LLM resolves these by referencing the config block
+5. **Optionally loads instruction playbook** (if specified in config)
+6. **Assembles components in correct order**:
    - Shared rules
-   - Instantiated main prompt
+   - Main prompt with config block + placeholders
    - Instruction playbook (if present)
    - Output template
-5. **Validates** that no unresolved `{placeholders}` remain
-6. **Returns** a single system message ready to paste into your LLM interface
+7. **Validates** assembly completeness and configuration coverage
+8. **Returns** a single system message ready to paste into your LLM interface
 
 ---
 
@@ -126,21 +128,41 @@ You are an assembly orchestrator. Follow these steps precisely:
 
 ---
 
-### Step 2: Instantiate Main Prompt
+### Step 2: Generate Configuration Block and Inject
 
-1. Take the **Main Prompt Template** (with `{placeholders}`)
-2. Replace each `{placeholder}` with the corresponding value from **Merged Configuration**
-   - Example: `{units}` → `metric` (from merged config)
-   - Example: `{forecastDays}` → `3` (from merged config)
-3. For complex values (lists, objects), format them readably:
-   - Lists: comma-separated or bulleted, depending on context
-   - Objects: key-value pairs if needed
-4. If a placeholder has no matching key in merged config, **keep it as-is** and flag it for validation
+**IMPORTANT**: Do NOT replace placeholders throughout the prompt body. Instead:
+
+1. **Generate a Configuration Block** from **Merged Configuration**:
+   - Create a YAML-style section listing all key-value pairs
+   - Format:
+     ```markdown
+     ## Configuration Variables
+     
+     The following configuration is active for this task:
+     - key1: value1
+     - key2: value2
+     - listKey: item1, item2, item3
+     ```
+
+2. **Inject Configuration Block** into Main Prompt:
+   - If the **Main Prompt Template** contains a `{CONFIGURATION_SECTION}` placeholder:
+     - Replace that placeholder with the generated configuration block
+   - If no `{CONFIGURATION_SECTION}` placeholder exists:
+     - Prepend the configuration block at the top of the main prompt
+     - Add a separator (`---`) between config block and prompt body
+
+3. **Retain All Other Placeholders**:
+   - Keep placeholders like `{units}`, `{forecastDays}`, `{inputFormat}` in the prompt body unchanged
+   - The LLM will resolve these by referencing the configuration block
+
+**Why This Approach?**:
+- **Token Efficiency**: Values stated once in config block, referenced multiple times via placeholders
+- **Clarity**: LLM sees both concrete values (config) and semantic usage (placeholders)
 
 **Output for Step 2**:
 ```markdown
-# INSTANTIATED MAIN PROMPT
-[Show the main prompt with all placeholders replaced]
+# INSTANTIATED MAIN PROMPT (WITH CONFIGURATION INJECTION)
+[Show the configuration block at top, followed by main prompt with placeholders RETAINED]
 ```
 
 ---
@@ -166,7 +188,9 @@ You are an assembly orchestrator. Follow these steps precisely:
 Concatenate components in this exact order:
 
 1. **Shared Rules** (from Section 1)
-2. **Instantiated Main Prompt** (from Step 2)
+2. **Instantiated Main Prompt** (from Step 2) - This includes:
+   - Configuration block at the top
+   - Main prompt body with placeholders RETAINED (not replaced)
 3. **Instruction Playbook** (from Step 3, if present)
 4. **Output Template** (from Section 5)
 
@@ -175,7 +199,11 @@ Use clear section dividers (e.g., `---` or `## SECTION NAME`) between components
 **Output for Step 4**:
 ```markdown
 # ASSEMBLED SYSTEM PROMPT
-[Show the complete, ready-to-use system message here]
+[Show the complete, ready-to-use system message here with:
+ - Shared Rules first
+ - Configuration block + Main prompt with placeholders
+ - Optional instruction playbook
+ - Output template last]
 ```
 
 ---
@@ -184,17 +212,24 @@ Use clear section dividers (e.g., `---` or `## SECTION NAME`) between components
 
 Check the **Assembled System Prompt** for issues:
 
-1. **Unresolved placeholders**: Search for any remaining `{placeholder}` patterns
-   - If found: List them with suggestions (e.g., "Add `{missingKey}` to profile or default-config")
-2. **Output template match**: Verify the pasted output template matches the `outputTemplate` value in merged config
-3. **Required sections**: Confirm all required components are present
+1. **Configuration Block Presence**: Verify the configuration block is present at the top of the main prompt section
+2. **Placeholders Retained**: Confirm placeholders like `{variable}` are RETAINED in the prompt body (this is correct behavior)
+3. **Configuration Completeness**: Check that all placeholders used in the prompt body have corresponding entries in the configuration block
+4. **Output template match**: Verify the pasted output template matches the `outputTemplate` value in merged config
+5. **Required sections**: Confirm all required components are present
 
 **Output for Step 5**:
 ```markdown
 # VALIDATION REPORT
 
-## Unresolved Placeholders
-[List any {placeholders} still present, OR "✓ All placeholders resolved"]
+## Configuration Block
+[Confirm config block is present with all merged values, OR flag if missing]
+
+## Placeholders Status
+[Confirm placeholders are RETAINED in prompt body (expected behavior)]
+
+## Configuration Completeness
+[List any placeholders in prompt body that DON'T have corresponding config entries, OR "✓ All placeholders covered in config block"]
 
 ## Output Template Match
 [Confirm template name matches config, OR flag mismatch]
